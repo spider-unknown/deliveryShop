@@ -6,7 +6,7 @@
  * Time: 11:03
  */
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web\V1;
 
 
 use App\Http\Controllers\Web\WebBaseController;
