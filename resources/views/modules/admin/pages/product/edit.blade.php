@@ -15,7 +15,7 @@
                     <h2 class="h4 card-header-title">Продукт</h2>
                 </header>
                 <div class="card-header border-dark">
-                    <img src="{{asset($product->image_path)}}" alt="Product image">
+                    <img src="{{asset($product->image_path)}}" style="max-height: 500px; max-width: 500px" alt="Product image">
                 </div>
                 <div class="card-body pt-0">
                     <form action="{{route('product.update', ['category_id' => $category_id])}}" method="post" enctype="multipart/form-data">
