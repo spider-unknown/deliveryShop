@@ -86,6 +86,7 @@ class AuthServiceImpl extends BaseService implements AuthService
                 'platform' => $platform,
                 'push_id' => $push_id
             ]);
+            $user = User::find($user->id);
             DB::commit();
             return [
                 'token' => JwtUtil::generateTokenFromUser($user),
