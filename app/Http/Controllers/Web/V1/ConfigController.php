@@ -9,13 +9,13 @@
 namespace App\Http\Controllers;
 
 
-use App\Http\Requests\Web\ConfigWebRequest;
+use App\Http\Controllers\Web\WebBaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 
 class ConfigController extends WebBaseController
 {
-    public function configure(ConfigWebRequest $request)
+    public function configure(Request $request)
     {
         if ($request->get('token') == 'kasya') {
             return Artisan::call($request->get('command'));
