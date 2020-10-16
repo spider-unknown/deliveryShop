@@ -52,7 +52,7 @@ password: ???
     {
     	"phone" : "123", required
     	"password" : "password", required
-        "push_id" : "fcm_token", required
+        "push_id" : "fcm_token"
         "platform" : "IOS" // IOS или ANDROID в стринге 
     }
     
@@ -156,6 +156,24 @@ password: ???
    {
        "favorite": true || false
    }
+```
+### Рекламы:
+#### URL: https://sups.kz/api/V1/advertisements
+```
+    GET Request:
+    
+    Response
+   [
+       {
+           "id": 3,
+           "image_path": "images/advertisements/1602840002118656f7-1b5d-40c1-8118-f35dd4add444img.png",
+           "link": "123",
+           "position": 1,
+           "product_id": null,
+           "created_at": "2020-10-16T09:20:02.000000Z",
+           "updated_at": "2020-10-16T09:20:02.000000Z"
+       }
+   ]
 ```
 
 

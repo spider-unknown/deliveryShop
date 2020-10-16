@@ -22,6 +22,7 @@ Route::group(['namespace' => 'Core'], function () {
 
 });
 Route::get('/categories', ['uses' => 'ProductApiController@categories']);
+Route::get('/advertisements', ['uses' => 'CommonApiController@advertisements']);
 Route::get('/products', ['uses' => 'ProductApiController@products']);
 Route::post('/favorite', ['uses' => 'ProductApiController@favorite']);
 Route::group(['middleware' => 'auth:api'], function () {

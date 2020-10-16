@@ -10,8 +10,8 @@ class ProductApiRequest extends ApiBaseRequest
     public function injectedRules()
     {
         return [
-            'category_id' => ['numeric', !request()->get('favorite') ? 'required' : '', 'exists:categories,id'],
-            'favorite' => ['boolean', !request()->get('category_id') ? 'required' : '']
+            'category_id' => ['numeric', !request()->get('favorite') ? 'required' : '', 'exists:categories,id', 'nullable'],
+            'favorite' => ['boolean', !request()->get('category_id') ? 'required' : '', 'nullable']
         ];
     }
 

@@ -41,16 +41,16 @@ class ProductController extends WebBaseController
         try {
             $path = $this->fileService->store($request->image, Product::IMAGE_DIRECTORY);
 
-        Product::create([
-            'category_id' => $category_id,
-            'name' => $request->name,
-            'description' => $request->description,
-            'price' => $request->price,
-            'image_path' => $path
-        ]);
-        $this->added();
+            Product::create([
+                'category_id' => $category_id,
+                'name' => $request->name,
+                'description' => $request->description,
+                'price' => $request->price,
+                'image_path' => $path
+            ]);
+            $this->added();
         } catch (\Exception $exception) {
-            $this->fileService->remove($path);
+            if($path) $this->fileService->remove($path);
             throw new WebServiceExplainedException($exception->getMessage());
         }
         return redirect()->route('product.index', ['category_id' => $category_id]);
@@ -79,7 +79,7 @@ class ProductController extends WebBaseController
                 'price' => $request->price,
                 'image_path' => $old_path
             ]);
-            $this->added();
+            $this->edited();
         } catch (\Exception $exception) {
             if($path) $this->fileService->remove($path);
             throw new WebServiceExplainedException($exception->getMessage());
