@@ -10,6 +10,6 @@ use Illuminate\Http\Request;
 class CommonApiController extends ApiBaseController
 {
     public function advertisements() {
-        return $this->ok(Advertisement::orderBy('created_at', 'desc')->get());
+        return $this->ok(Advertisement::orderBy('created_at', 'desc')->with('product')->get());
     }
 }

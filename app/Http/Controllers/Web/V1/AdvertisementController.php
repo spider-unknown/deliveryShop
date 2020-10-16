@@ -21,7 +21,7 @@ class AdvertisementController extends WebBaseController
         $this->fileService = $fileService;
     }
     public function index() {
-        $advertisements = Advertisement::orderBy('created_at', 'desc')->get();
+        $advertisements = Advertisement::orderBy('created_at', 'desc')->with('product')->get();
         return $this->adminPagesView('advertisement.index', compact('advertisements'));
     }
 
