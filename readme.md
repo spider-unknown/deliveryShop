@@ -166,13 +166,33 @@ password: ???
     Response
    [
        {
-           "id": 3,
-           "image_path": "images/advertisements/1602840002118656f7-1b5d-40c1-8118-f35dd4add444img.png",
-           "link": "123",
+           "id": 2,
+           "image_path": "images/advertisements/160284029086ef071a-909a-46e6-8043-e9048de23a79img.jpg",
+           "link": null,
+           "position": 1,
+           "product_id": 2,
+           "created_at": "2020-10-16T09:24:50.000000Z",
+           "updated_at": "2020-10-16T09:24:50.000000Z",
+           "product": {
+               "id": 2,
+               "name": "Маргарита",
+               "description": "Самая популярная пицца в этом мире!",
+               "price": 2000,
+               "image_path": "images/products/1602790483104a1ae9-a4de-4eb8-a0d6-d8969f421319img.jpg",
+               "category_id": 1,
+               "created_at": "2020-10-15T19:34:43.000000Z",
+               "updated_at": "2020-10-15T19:34:43.000000Z"
+           }
+       },
+       {
+           "id": 1,
+           "image_path": "images/advertisements/1602840268f5b428df-ab11-4fae-9b64-17b1e5e9bb94img.jpeg",
+           "link": "https://sups.kz",
            "position": 1,
            "product_id": null,
-           "created_at": "2020-10-16T09:20:02.000000Z",
-           "updated_at": "2020-10-16T09:20:02.000000Z"
+           "created_at": "2020-10-16T09:24:28.000000Z",
+           "updated_at": "2020-10-16T09:24:28.000000Z",
+           "product": null
        }
    ]
 ```
