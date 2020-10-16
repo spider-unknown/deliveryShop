@@ -161,7 +161,8 @@ password: ???
 #### URL: https://sups.kz/api/V1/advertisements
 ```
     GET Request:
-    
+    positions: TOP = 1;
+               MIDDLE = 2;
     Response
    [
        {

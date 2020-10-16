@@ -18,8 +18,8 @@ class AdvertisementWebForm implements WithForm
         $selected_top = $value ? $value->position == Advertisement::TOP ? 'selected' : '' : '';
         $selected_middle = $value ? $value->position == Advertisement::MIDDLE ? 'selected' : '' : '';
         $positions = [
-            array('title' => 'Top', 'value' => Advertisement::TOP, 'selected' => $selected_top),
-            array('title' => 'Middle', 'value' => Advertisement::MIDDLE, 'selected' => $selected_middle),
+            array('title' => 'Топ', 'value' => Advertisement::TOP, 'selected' => $selected_top),
+            array('title' => 'Центр', 'value' => Advertisement::MIDDLE, 'selected' => $selected_middle),
             ];
         $products = Product::all();
         $products_array[] = array('title' => null, 'value' => null, 'selected' => '');

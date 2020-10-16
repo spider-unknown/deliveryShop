@@ -22,6 +22,8 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Ссылка</th>
+                                <th>Продукт</th>
+                                <th>Позиция</th>
                                 <th>Создан</th>
                                 <th>Действия</th>
                             </tr>
@@ -31,6 +33,8 @@
                                 <tr>
                                     <td>{{$advertisement->id}}</td>
                                     <td>{{$advertisement->link}}</td>
+                                    <td>{{$advertisement->product ? $advertisement->product->name : ''}}</td>
+                                    <td>{{$advertisement->position == \App\Models\Entities\Advertisement::TOP ? 'Топ' : 'Центр'}}</td>
                                     <td>{{$advertisement->created_at}}</td>
                                     <td class="d-inline-block">
                                         <a href="{{route('advertisement.edit', ['id' => $advertisement->id])}}"
