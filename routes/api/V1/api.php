@@ -21,13 +21,13 @@ Route::group(['namespace' => 'Core'], function () {
     Route::post('/change/password', ['uses' => 'AuthController@changePassword']);
 
 });
-
+Route::get('/categories', ['uses' => 'ProductApiController@categories']);
+Route::get('/products', ['uses' => 'ProductApiController@products']);
+Route::post('/favorite', ['uses' => 'ProductApiController@favorite']);
 Route::group(['middleware' => 'auth:api'], function () {
     Route::group(['namespace' => 'Core'], function () {
         Route::get('/me', ['uses' => 'AuthController@me']);
     });
-    Route::get('/categories', ['uses' => 'ProductApiController@categories']);
-    Route::get('/products', ['uses' => 'ProductApiController@products']);
-    Route::post('/favorite', ['uses' => 'ProductApiController@favorite']);
+
 
 });

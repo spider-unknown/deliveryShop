@@ -22,7 +22,7 @@ class RegisterApiRequest extends ApiBaseRequest
             'phone' => ['required', 'unique:users,phone', 'regex:/^[0-9]+$/', 'min:6', 'max:15'],
             'password' => ['required', 'string'],
             'platform' => ['required', Rule::in([Platform::ANDROID, Platform::IOS])],
-            'push_id' => ['required', 'string']
+            'push_id' => ['string']
         ];
     }
 
