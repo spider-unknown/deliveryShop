@@ -28,9 +28,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/category/delete', ['uses' => 'CategoryController@delete', 'as' => 'category.delete']);
 
     //City
-    Route::get('/cities', ['uses' => 'cityController@index', 'as' => 'city.index']);
-    Route::post('/city/store', ['uses' => 'cityController@store', 'as' => 'city.store']);
-    Route::post('/city/update', ['uses' => 'cityController@update', 'as' => 'city.update']);
+    Route::get('/cities', ['uses' => 'CityController@index', 'as' => 'city.index']);
+    Route::post('/city/store', ['uses' => 'CityController@store', 'as' => 'city.store']);
+    Route::post('/city/update', ['uses' => 'CityController@update', 'as' => 'city.update']);
 
     //Countries
     Route::get('/countries', ['uses' => 'CountryController@index', 'as' => 'country.index']);
