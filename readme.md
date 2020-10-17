@@ -78,6 +78,37 @@ password: ???
    }
 
 ```
+### Отправить код для восстановления пароля:
+#### URL: https://sups.kz/api/V1/send/code
+```
+    POST Request:
+    {
+    	"phone" : "7007234324", required
+    }
+    
+    Response
+   {
+       "code": "4886"
+   }
+
+```
+### Восстановить пароль:
+#### URL: https://sups.kz/api/V1/change/password
+```
+    POST Request:
+    {
+    	"phone" : "7007234324", required
+    	"code" : "0000", required
+        "password" : "password", min-8, required
+        "password_confirmation": equal with password: 
+    }
+    
+    Response
+   {
+       "message": "Successfully edited!"
+   }
+
+```
 ### Категории:
 #### URL: https://sups.kz/api/V1/categories
 ````

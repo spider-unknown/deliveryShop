@@ -16,7 +16,7 @@ class SendCodeApiRequest extends ApiBaseRequest
     public function injectedRules()
     {
         return [
-            'phone' => ['required']
+            'phone' => ['required', 'string', 'exists:users,phone', 'regex:/^[0-9]+$/', 'min:6', 'max:15'],
         ];
     }
 

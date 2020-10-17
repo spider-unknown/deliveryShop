@@ -20,7 +20,8 @@ class CodeServiceImpl extends BaseService implements CodeService
     public function generateCode($key)
     {
         $code = CodeUtil::generateSmsCode(4);
-        Cache::put("code-$key", $code, Carbon::now()->addMinutes(1));
+        Cache::put("code-$key", $code, Carbon::now()->addMinutes(3));
+        return $code;
     }
 
     public function checkCode($key, $code, $forget = true): bool

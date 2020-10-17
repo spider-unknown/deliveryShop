@@ -107,9 +107,9 @@ class AuthServiceImpl extends BaseService implements AuthService
 
     public function sendCode($phone)
     {
-        $this->codeService->generateCode($phone);
+        $code = $this->codeService->generateCode($phone);
         return [
-            'message' => 'sent'
+            'code' => $code
         ];
     }
 
@@ -120,7 +120,7 @@ class AuthServiceImpl extends BaseService implements AuthService
 
     public function changePassword($phone, $password, $code)
     {
-        if (!$this->codeService->checkCode($phone, $password)) {
+        if (!$this->codeService->checkCode($phone, $code)) {
             $this->apiFail([
                 'errors' => [
                     trans('auth.invalid.code')

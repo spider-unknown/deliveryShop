@@ -16,9 +16,10 @@ class ChangePasswordApiRequest extends ApiBaseRequest
     public function injectedRules()
     {
         return [
-            'phone' => ['required', 'exists:users,phone'],
-            'password' => ['required'],
-            'code' => ['required']
+            'phone' => ['required', 'string', 'exists:users,phone', 'regex:/^[0-9]+$/', 'min:6', 'max:15'],
+            'password' => ['required', 'min:8', 'string'],
+            'password_confirmation' => ['required_with:password', 'same:password'],
+            'code' => ['required', 'min:4', 'string', 'max:4', 'regex:/^[0-9]+$/']
         ];
     }
 
