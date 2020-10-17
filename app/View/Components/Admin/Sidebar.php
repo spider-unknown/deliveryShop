@@ -26,6 +26,7 @@ class Sidebar extends BaseComponent
                 $this->navItem(route('home'), 'ti-home', 'Главная'),
                 $this->navItem(route('category.index'), 'ti-archive', 'Категории/Продукты'),
                 $this->navItem(route('advertisement.index'), 'ti-gallery', 'Реклама'),
+                $this->navItem(route('country.index'), 'ti-menu', 'Страны/Города'),
 
             ];
         } else {

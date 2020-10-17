@@ -196,6 +196,12 @@ password: ???
        }
    ]
 ```
+### Страны с городами:
+#### URL: https://sups.kz/api/V1/cities
+```
+    GET Request:
 
-
+    Response
+   
+```
 
