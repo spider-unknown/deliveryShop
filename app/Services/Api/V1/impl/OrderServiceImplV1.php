@@ -54,7 +54,7 @@ class OrderServiceImplV1 extends BaseService implements OrderServiceV1
         }
         try {
             DB::beginTransaction();
-            $total_price = $total_price + $request->courier ? 500.0 : 0.0;
+            $total_price += $request->courier ? 500.0 : 0.0;
             $order = Order::create([
                 'total_quantity' => $total_quantity,
                 'total_amount' => $total_price,
