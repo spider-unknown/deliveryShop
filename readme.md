@@ -476,4 +476,111 @@ password: ???
        }
    ]
 ```
+### Заказы:
+#### URL: https://sups.kz/api/V1/orders
+````
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+````
+```
+    GET Request:
+
+    status: PROCESS = 0;
+            ACCEPTED = 1;
+            DELIVERED = 2;
+    Response
+   {
+       "current_page": 1,
+       "data": [
+           {
+               "id": 1,
+               "total_quantity": 3,
+               "total_amount": 5600,
+               "status": 0,
+               "courier": 1,
+               "cash": 1,
+               "user_id": 2,
+               "user_address_id": 1,
+               "created_at": "2020-10-18T10:41:45.000000Z",
+               "updated_at": "2020-10-18T10:41:45.000000Z",
+               "details": [
+                   {
+                       "id": 1,
+                       "order_id": 1,
+                       "product_id": 1,
+                       "quantity": 3,
+                       "total_price": 5100,
+                       "created_at": "2020-10-18T10:41:45.000000Z",
+                       "updated_at": "2020-10-18T10:41:45.000000Z",
+                       "product": {
+                           "id": 1,
+                           "name": "Болоньезе",
+                           "description": "Очень вкусная пицца этого года",
+                           "price": 1700,
+                           "image_path": "images/products/160279043762652a04-da58-4162-9c36-719f2eb1a15cimg.jpg",
+                           "category_id": 1,
+                           "created_at": "2020-10-15T19:33:57.000000Z",
+                           "updated_at": "2020-10-15T19:33:57.000000Z"
+                       }
+                   }
+               ],
+               "address": {
+                   "id": 1,
+                   "user_id": 2,
+                   "city_id": 1,
+                   "address": "Bekza",
+                   "comment": "Bekza",
+                   "main": 0,
+                   "created_at": "2020-10-18T08:32:38.000000Z",
+                   "updated_at": "2020-10-18T08:33:21.000000Z",
+                   "city": {
+                       "id": 1,
+                       "name": "Алматы",
+                       "country_id": 1,
+                       "created_at": "2020-10-17T19:06:51.000000Z",
+                       "updated_at": "2020-10-17T19:06:51.000000Z",
+                       "country": {
+                           "id": 1,
+                           "name": "Қазақстан",
+                           "created_at": "2020-10-17T19:05:46.000000Z",
+                           "updated_at": "2020-10-17T19:05:46.000000Z"
+                       }
+                   }
+               }
+           }
+       ],
+       "first_page_url": "https://sups.kz/api/V1/orders?page=1",
+       "from": 1,
+       "last_page": 1,
+       "last_page_url": "https://sups.kz/api/V1/orders?page=1",
+       "next_page_url": null,
+       "path": "https://sups.kz/api/V1/orders",
+       "per_page": 10,
+       "prev_page_url": null,
+       "to": 1,
+       "total": 1
+   }
+```
+### Сделать заказ:
+#### URL: https://sups.kz/api/V1/make/order
+````
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+````
+```
+    POST Request:
+    {
+        "products": [
+            {
+                "id": 1,
+                "quantity": 3
+            }
+        ],
+        "courier": true,
+        "cash": true,
+        "user_address_id": 1
+    }
+    Response
+   {
+       "message": "Successfully added!"
+   }
+```
 

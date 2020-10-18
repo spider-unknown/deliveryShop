@@ -52,6 +52,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/advertisement/store', ['uses' => 'AdvertisementController@store', 'as' => 'advertisement.store']);
     Route::post('/advertisement/update', ['uses' => 'AdvertisementController@update', 'as' => 'advertisement.update']);
     Route::post('/advertisement/delete', ['uses' => 'AdvertisementController@delete', 'as' => 'advertisement.delete']);
+
+    //Orders
+    Route::get('/orders', ['uses' => 'OrderController@index', 'as' => 'order.index']);
+
 });
 Route::group(['namespace' => 'Core', 'middleware' => 'auth'], function () {
     Route::get('/home', ['uses' => 'PageController@home', 'as' => 'home']);
