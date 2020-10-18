@@ -36,5 +36,6 @@ class ErrorCode
     public const FIELD_REQUIRED = 24;
     public const FORBIDDEN = 25;
     public const INVALID_CODE = 26;
+    public const INVALID_OLD_PASSWORD = 27;
 
 }

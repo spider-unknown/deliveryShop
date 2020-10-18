@@ -8,4 +8,5 @@
 return [
     'access.denied' => 'Access denied',
     'system.fail' => 'System error',
+    'not.found' => 'Not found',
 ];

@@ -5,7 +5,9 @@ namespace App\Providers;
 use App\Services\Api\V1\Core\AuthService;
 use App\Services\Api\V1\Core\impl\AuthServiceImpl;
 use App\Services\Api\V1\impl\ProductServiceImplV1;
+use App\Services\Api\V1\impl\ProfileServiceImplV1;
 use App\Services\Api\V1\ProductServiceV1;
+use App\Services\Api\V1\ProfileServiceV1;
 use App\Services\Common\V1\Support\CodeService;
 use App\Services\Common\V1\Support\FileService;
 use App\Services\Common\V1\Support\impl\CodeServiceImpl;
@@ -43,6 +45,9 @@ class SystemServiceProvider extends ServiceProvider
         });
         $this->app->bind(OneSignalPushService::class, function ($app) {
             return new OneSignalPushServiceImpl();
+        });
+        $this->app->bind(ProfileServiceV1::class, function ($app) {
+            return new ProfileServiceImplV1(new FileServiceImpl());
         });
 
         //WEB

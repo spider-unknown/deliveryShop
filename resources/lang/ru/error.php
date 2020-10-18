@@ -8,4 +8,5 @@
 return [
     'access.denied' => 'Доступа нет',
     'system.fail' => 'Техническая ошибка',
+    'not.found' => 'Не найден!',
 ];

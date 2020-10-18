@@ -30,6 +30,12 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::group(['namespace' => 'Core'], function () {
         Route::get('/me', ['uses' => 'AuthController@me']);
     });
+    Route::get('/profile', ['uses' => 'ProfileApiController@profile']);
+    Route::get('/profile/addresses', ['uses' => 'ProfileApiController@addresses']);
+    Route::post('/profile/address', ['uses' => 'ProfileApiController@addOrEditAddress']);
+    Route::post('/profile/update', ['uses' => 'ProfileApiController@profileUpdate']);
+    Route::post('/password/update', ['uses' => 'ProfileApiController@passwordUpdate']);
+    Route::post('/profile/avatar', ['uses' => 'ProfileApiController@avatarChange']);
 
 
 });
