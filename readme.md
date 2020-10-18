@@ -38,6 +38,7 @@ password: ???
 <br> FIELD_REQUIRED = 24;
 <br> FORBIDDEN = 25;
 <br> INVALID_CODE = 26;
+<br> INVALID_OLD_PASSWORD = 27;
 <hr>
 
 #### IMAGE BASE URL: https://sups.kz
@@ -147,9 +148,6 @@ password: ???
 ```
 ### Продукты:
 #### URL: https://sups.kz/api/V1/products
-````
-    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
-````
 ```
     GET Request:
     {
@@ -178,7 +176,7 @@ password: ???
     Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
 ````
 ```
-    GET Request:
+    POST Request:
     {
     	product_id: numeric required 
     }
@@ -270,6 +268,205 @@ password: ???
                    "updated_at": "2020-10-17T19:07:08.000000Z"
                }
            ]
+       }
+   ]
+```
+### Профиль:
+#### URL: https://sups.kz/api/V1/profile
+````
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+````
+```
+    GET Request:
+    Response
+   {
+       "id": 2,
+       "name": null,
+       "surname": null,
+       "email": null,
+       "phone": "7077376257",
+       "birth_date": null,
+       "sex": null,
+       "avatar_path": null,
+       "notification": 1,
+       "email_verified_at": null,
+       "created_at": "2020-10-15T19:40:15.000000Z",
+       "updated_at": "2020-10-17T19:59:05.000000Z",
+       "deleted_at": null,
+       "role_id": 2,
+       "addresses_count": 0
+   }
+```
+### Профиль изменить:
+#### URL: https://sups.kz/api/V1/profile/update
+````
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+````
+```
+    POST Request:
+    {
+    	"name": string required, 
+    	"surname": string required, 
+    	"email": email required, 
+    	"sex": MALE || FEMALE, 
+    	"birth_date": date 1998-06-01, 
+    	"notification": boolean 1 || 0 required, 
+    }
+    Response
+   {
+       "id": 2,
+       "name": "Bekzat",
+       "surname": "Bekmuratov",
+       "email": "bekza@mail.ru",
+       "phone": "7077376257",
+       "birth_date": "1998-06-01",
+       "sex": "MALE",
+       "avatar_path": null,
+       "notification": 1,
+       "email_verified_at": null,
+       "created_at": "2020-10-15T19:40:15.000000Z",
+       "updated_at": "2020-10-18T08:18:19.000000Z",
+       "deleted_at": null,
+       "role_id": 2,
+       "addresses_count": 0
+   }
+```
+### Поменять пароль:
+#### URL: https://sups.kz/api/V1/password/update
+````
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+````
+```
+    POST Request:
+    {
+    	"old_password": string required, 
+    	"password" : string min-8, required
+        "password_confirmation": equal with password: 
+    }
+    Response
+   {
+       "id": 2,
+       "name": "Bekzat",
+       "surname": "Bekmuratov",
+       "email": "bekza@mail.ru",
+       "phone": "7077376257",
+       "birth_date": "1998-06-01",
+       "sex": "MALE",
+       "avatar_path": null,
+       "notification": 1,
+       "email_verified_at": null,
+       "created_at": "2020-10-15T19:40:15.000000Z",
+       "updated_at": "2020-10-18T08:23:14.000000Z",
+       "deleted_at": null,
+       "role_id": 2,
+       "addresses_count": 0
+   }
+```
+### Поменять аватар:
+#### URL: https://sups.kz/api/V1/profile/avatar
+````
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+````
+```
+    POST Request:
+    {
+    	"avatar": image required, 
+    	
+    }
+    Response
+   {
+       "id": 2,
+       "name": "Bekzat",
+       "surname": "Bekmuratov",
+       "email": "bekza@mail.ru",
+       "phone": "7077376257",
+       "birth_date": "1998-06-01",
+       "sex": "MALE",
+       "avatar_path": "images/avatars/1603009599e19a5b68-7dff-4543-bfd0-9ec81acab160img.png",
+       "notification": 1,
+       "email_verified_at": null,
+       "created_at": "2020-10-15T19:40:15.000000Z",
+       "updated_at": "2020-10-18T08:26:39.000000Z",
+       "deleted_at": null,
+       "role_id": 2,
+       "addresses_count": 0
+   }
+```
+### Поменять или добавить адрес:
+#### URL: https://sups.kz/api/V1/profile/address
+````
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+````
+```
+    POST Request:
+    {
+    	"address": string required, 
+    	"comment": string, 
+    	"city_id": numeric required, 
+    	"main": required boolean, 
+    	"id": numeric, on edit, 
+    	
+    }
+    Response
+   {
+       "message": "Successfully edited!"
+   }
+```
+### Адреса:
+#### URL: https://sups.kz/api/V1/profile/addresses
+````
+    Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvdGVuc2VuZC5tZVwvYXBpXC92MVwvbG9naW4iLCJpYXQiOjE1Nzk2MjcxNjYsImV4cCI6MTU3OTYzMDc2NiwibmJmIjoxNTc5NjI3MTY2LCJqdGkiOiJPeUg5T3hZcVY2d0d6QllyIiwic3ViIjoxLCJwcnYiOiJlZTVhYzY5NDI5YzU1NmQ3NWRiZTdmZjRlNThiOTdjZDRmNzE0MmViIn0.Ykb0nBteVz3KBVmfxAcPHtgA9JPyfD3CArwSL4P3onA
+````
+```
+    GET Request:
+
+    Response
+   [
+       {
+           "id": 1,
+           "user_id": 2,
+           "city_id": 1,
+           "address": "Bekza",
+           "comment": "Bekza",
+           "main": 0,
+           "created_at": "2020-10-18T08:32:38.000000Z",
+           "updated_at": "2020-10-18T08:33:21.000000Z",
+           "city": {
+               "id": 1,
+               "name": "Алматы",
+               "country_id": 1,
+               "created_at": "2020-10-17T19:06:51.000000Z",
+               "updated_at": "2020-10-17T19:06:51.000000Z",
+               "country": {
+                   "id": 1,
+                   "name": "Қазақстан",
+                   "created_at": "2020-10-17T19:05:46.000000Z",
+                   "updated_at": "2020-10-17T19:05:46.000000Z"
+               }
+           }
+       },
+       {
+           "id": 2,
+           "user_id": 2,
+           "city_id": 1,
+           "address": "Bekza",
+           "comment": "Bekza",
+           "main": 1,
+           "created_at": "2020-10-18T08:33:21.000000Z",
+           "updated_at": "2020-10-18T08:33:21.000000Z",
+           "city": {
+               "id": 1,
+               "name": "Алматы",
+               "country_id": 1,
+               "created_at": "2020-10-17T19:06:51.000000Z",
+               "updated_at": "2020-10-17T19:06:51.000000Z",
+               "country": {
+                   "id": 1,
+                   "name": "Қазақстан",
+                   "created_at": "2020-10-17T19:05:46.000000Z",
+                   "updated_at": "2020-10-17T19:05:46.000000Z"
+               }
+           }
        }
    ]
 ```
