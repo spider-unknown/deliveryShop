@@ -117,7 +117,7 @@ class ProfileServiceImplV1 extends BaseService implements ProfileServiceV1
     }
 
     private function getUser($user_id) {
-        return User::where('id', $user_id)->withCount('addresses')->first();
+        return User::where('id', $user_id)->withCount('addresses', 'orders')->first();
     }
 
 }

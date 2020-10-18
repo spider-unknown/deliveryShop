@@ -13,10 +13,7 @@ class ProductApiController extends ApiBaseController
 {
     protected $productService;
 
-    /**
-     * AuthController constructor.
-     * @param $authService
-     */
+
     public function __construct(ProductServiceV1 $productService)
     {
         $this->productService = $productService;

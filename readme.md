@@ -294,7 +294,9 @@ password: ???
        "updated_at": "2020-10-17T19:59:05.000000Z",
        "deleted_at": null,
        "role_id": 2,
-       "addresses_count": 0
+       "addresses_count": 0,
+       "orders_count": 0
+
    }
 ```
 ### Профиль изменить:
@@ -328,7 +330,8 @@ password: ???
        "updated_at": "2020-10-18T08:18:19.000000Z",
        "deleted_at": null,
        "role_id": 2,
-       "addresses_count": 0
+       "addresses_count": 0,
+       "orders_count": 0
    }
 ```
 ### Поменять пароль:
@@ -359,7 +362,8 @@ password: ???
        "updated_at": "2020-10-18T08:23:14.000000Z",
        "deleted_at": null,
        "role_id": 2,
-       "addresses_count": 0
+       "addresses_count": 0,
+       "orders_count": 0
    }
 ```
 ### Поменять аватар:
@@ -389,7 +393,9 @@ password: ???
        "updated_at": "2020-10-18T08:26:39.000000Z",
        "deleted_at": null,
        "role_id": 2,
-       "addresses_count": 0
+       "addresses_count": 0,
+       "orders_count": 0
+
    }
 ```
 ### Поменять или добавить адрес:

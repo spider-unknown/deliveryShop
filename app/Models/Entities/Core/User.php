@@ -2,6 +2,7 @@
 
 namespace App\Models\Entities\Core;
 
+use App\Models\Entities\Order\Order;
 use App\Models\Entities\UserAddress;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -72,5 +73,9 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
 
     public function addresses(){
         return $this->hasMany(UserAddress::class, 'user_id', 'id');
+    }
+
+    public function orders(){
+        return $this->hasMany(Order::class, 'user_id', 'id');
     }
 }

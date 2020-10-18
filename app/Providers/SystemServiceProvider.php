@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Services\Api\V1\Core\AuthService;
 use App\Services\Api\V1\Core\impl\AuthServiceImpl;
+use App\Services\Api\V1\impl\OrderServiceImplV1;
 use App\Services\Api\V1\impl\ProductServiceImplV1;
 use App\Services\Api\V1\impl\ProfileServiceImplV1;
+use App\Services\Api\V1\OrderServiceV1;
 use App\Services\Api\V1\ProductServiceV1;
 use App\Services\Api\V1\ProfileServiceV1;
 use App\Services\Common\V1\Support\CodeService;
@@ -48,6 +50,9 @@ class SystemServiceProvider extends ServiceProvider
         });
         $this->app->bind(ProfileServiceV1::class, function ($app) {
             return new ProfileServiceImplV1(new FileServiceImpl());
+        });
+        $this->app->bind(OrderServiceV1::class, function ($app) {
+            return new OrderServiceImplV1();
         });
 
         //WEB
