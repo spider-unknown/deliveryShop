@@ -55,6 +55,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Orders
     Route::get('/orders', ['uses' => 'OrderController@index', 'as' => 'order.index']);
+    Route::get('/order', ['uses' => 'OrderController@show', 'as' => 'order.show']);
+    Route::post('/order/accept', ['uses' => 'OrderController@accept', 'as' => 'order.accept']);
+    Route::post('/order/delivered', ['uses' => 'OrderController@delivered', 'as' => 'order.delivered']);
 
 });
 Route::group(['namespace' => 'Core', 'middleware' => 'auth'], function () {

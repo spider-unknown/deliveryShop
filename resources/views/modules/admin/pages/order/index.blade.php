@@ -20,9 +20,12 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Пользователь</th>
+                                <th>Телефон</th>
                                 <th>Адрес</th>
                                 <th>Статус</th>
                                 <th>Сумма</th>
+                                <th>Курьер</th>
+                                <th>Оплата</th>
                                 <th>Создан</th>
                                 <th>Действия</th>
                             </tr>
@@ -32,15 +35,42 @@
                                 <tr>
                                     <td>{{$order->id}}</td>
                                     <td>{{$order->user->name. ' ' .$order->user->surname }}</td>
+                                    <td>{{$order->user->phone}}</td>
                                     <td>{{$order->address->city->name. ' ' .$order->address->address}}</td>
-                                    <td>@if($order->status == 0)В ожиданиий
-                                            @elseif($order->status == 1) Принят
-                                            @elseif($order->status == 2) Доставлен
+                                    <td>@if($order->status == 0)<span
+                                            class="badge badge-pill badge-danger">В ожиданиий</span>
+                                        @elseif($order->status == 1) <span
+                                                class="badge badge-pill badge-warning">Принят</span>
+                                        @elseif($order->status == 2) <span class="badge badge-pill badge-success">Доставлен</span>
                                         @endif
                                     </td>
                                     <td>{{$order->total_amount}}</td>
+                                    <td><span class="badge badge-pill badge-grey">{{$order->courier ? 'Да' : 'Нет'}}</span></td>
+                                    <td><span class="badge badge-pill badge-grey">{{$order->cash ? 'Наличными' : 'Картой'}}
+                                        </span></td>
                                     <td>{{$order->created_at}}</td>
-                                    <td class="d-inline-block">
+                                    <td class="d-flex">
+                                        <a href="{{route('order.show', ['id' => $order->id])}}"
+                                           class="btn btn-outline-primary btn-sm mr-1 mb-1">
+                                            <i class="ti ti-eye"></i>
+                                        </a>
+                                        @if($order->status == 0)
+                                            <form action="{{route('order.accept')}}" method="POST">
+                                                {{csrf_field()}}
+                                                <input type="number" name="id" hidden value="{{$order->id}}">
+                                                <button type="submit" class="btn btn-outline-primary btn-sm">
+                                                    Принять<i class="ti ti-check"></i>
+                                                </button>
+                                            </form>
+                                        @elseif($order->status == 1)
+                                            <form action="{{route('order.delivered')}}" method="POST">
+                                                {{csrf_field()}}
+                                                <input type="number" name="id" hidden value="{{$order->id}}">
+                                                <button type="submit" class="btn btn-outline-primary btn-sm">
+                                                    Доставлен<i class="ti ti-check"></i>
+                                                </button>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
