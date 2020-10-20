@@ -37,7 +37,7 @@ class ProductServiceImplV1 extends BaseService implements ProductServiceV1
             $product_query = $product_query->where('category_id', $request->category_id);
         }
         else {
-            $favorite_ids = Favorite::where('user_id', $user_id)->pluck('id');
+            $favorite_ids = Favorite::where('user_id', $user_id)->pluck('product_id');
             $product_query = $product_query->whereIn('id', $favorite_ids);
         }
         return $product_query->get();
