@@ -28,9 +28,10 @@ Route::get('/products', ['uses' => 'ProductApiController@products']);
 Route::group(['middleware' => 'auth:api'], function () {
     Route::group(['namespace' => 'Core'], function () {
         Route::get('/me', ['uses' => 'AuthController@me']);
-        Route::post('/favorite', ['uses' => 'ProductApiController@favorite']);
 
     });
+    Route::post('/favorite', ['uses' => 'ProductApiController@favorite']);
+
     //Profile
     Route::get('/profile', ['uses' => 'ProfileApiController@profile']);
     Route::get('/profile/addresses', ['uses' => 'ProfileApiController@addresses']);
