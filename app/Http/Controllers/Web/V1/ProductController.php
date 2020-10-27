@@ -38,6 +38,7 @@ class ProductController extends WebBaseController
 
     public function store(ProductCategoryWebRequest $productCategoryWebRequest, ProductWebRequest $request) {
         $category_id = $productCategoryWebRequest->category_id;
+        $path = null;
         try {
             $path = $this->fileService->store($request->image, Product::IMAGE_DIRECTORY);
 
