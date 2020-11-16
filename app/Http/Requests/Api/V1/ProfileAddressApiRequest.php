@@ -14,7 +14,7 @@ class ProfileAddressApiRequest extends ApiBaseRequest
             'address' => ['required', 'string'],
             'comment' => ['string'],
             'main' => ['required', 'boolean'],
-            'id' => ['numeric', 'exists:user_addresses,id']
+            'id' => ['numeric', 'exists:user_addresses,id', 'nullable']
         ];
     }
 
