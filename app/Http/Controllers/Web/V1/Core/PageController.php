@@ -31,4 +31,8 @@ class PageController extends WebBaseController
         }
         abort(404);
     }
+
+    public function privacy() {
+        return view('modules.privacy');
+    }
 }

@@ -66,3 +66,9 @@ Route::group(['namespace' => 'Core', 'middleware' => 'auth'], function () {
 
 
 });
+
+Route::group(['namespace' => 'Core'], function () {
+    Route::get('/privacy-policy', ['uses' => 'PageController@privacy', 'as' => 'confidence']);
+
+
+});
