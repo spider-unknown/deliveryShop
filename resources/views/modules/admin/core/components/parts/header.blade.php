@@ -1,10 +1,7 @@
 <header class="u-header">
     <div class="u-header-left">
         <a class="u-header-logo" href="{{route('home')}}">
-            <img class="u-header-logo__icon" src="{{asset('modules/admin/assets/svg/logo-mini.svg')}}"
-                 alt="Awesome Icon">
-            <img class="u-header-logo__text" src="{{asset('modules/admin/assets/svg/logo-text-light.svg')}}"
-                 alt="Awesome">
+            <h3>Delivery</h3>
         </a>
     </div>
     <div class="u-header-middle">
@@ -31,8 +28,6 @@
                    aria-haspopup="true" aria-expanded="false"
                    data-toggle="dropdown"
                    data-offset="0">
-                    <img class="u-header-avatar img-fluid rounded-circle mr-md-3" src="{{$user->avatar_path}}"
-                         alt="User Profile">
                     <span class="text-dark d-none d-md-inline-flex align-items-center">
 								{{$user->name}}
                         <span class="ti-angle-down text-muted ml-4"></span>
