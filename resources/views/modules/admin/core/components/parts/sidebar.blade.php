@@ -2,10 +2,7 @@
     <div class='u-sidebar-inner'>
         <header class='u-sidebar-header'>
             <a class='u-sidebar-logo' href='{{route('home')}}'>
-                <img class='u-sidebar-logo__icon' alt='Awesome Icon'
-                     src='{{asset('modules/admin/assets/svg/logo-mini.svg')}}'>
-                <img class='u-sidebar-logo__text' alt='Awesome'
-                     src='{{asset('modules/admin/assets/svg/logo-text-light.svg')}}'>
+               <h3>Delivery</h3>
             </a>
         </header>
         <nav class='u-sidebar-nav'>
