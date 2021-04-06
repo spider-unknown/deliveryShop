@@ -17,7 +17,7 @@ class KKBServiceImpl extends BaseService implements KKBService
     public function pay($transaction_id, $user, $order_detail)
     {
 
-        $merchant_id = env('KKB_MERCHANT_ID');
+        $merchant_id = env('KKB_TEST_MERCHANT_ID');
         $cert_id = File::get(storage_path() . '/keys/kkb/' . $merchant_id . '/merchant_cert_id');
         $merchant_name = File::get(storage_path() . '/keys/kkb/' . $merchant_id . '/merchant_name');
         $keypass = File::get(storage_path() . '/keys/kkb/' . $merchant_id . '/password');
@@ -52,8 +52,8 @@ class KKBServiceImpl extends BaseService implements KKBService
         $item->addAttribute('name', "Заказ");
         $item->addAttribute('quantity', $order_detail->total_quantity);
         $item->addAttribute('amount', $order_detail->total_amount);
-//        $url = 'https://testpay.kkb.kz/jsp/process/logon.jsp';
-                $url = 'https://epay.kkb.kz/jsp/process/logon.jsp';
+        $url = 'https://testpay.kkb.kz/jsp/process/logon.jsp';
+//                $url = 'https://epay.kkb.kz/jsp/process/logon.jsp';
         return view('modules.kkb.redirect')->with('url', $url)
             ->with('signed_order_b64', base64_encode(preg_replace('!^[^>]+>(\r\n|\n|)!', '', $xml->asXML())))
             ->with('email', $user->email)
@@ -64,7 +64,7 @@ class KKBServiceImpl extends BaseService implements KKBService
 
     public function status($transaction_id)
     {
-        $merchant_id = env('KKB_MERCHANT_ID');
+        $merchant_id = env('KKB_TEST_MERCHANT_ID');
         $cert_id = File::get(storage_path() . '/keys/kkb/' . $merchant_id . '/merchant_cert_id');
         $keypass = File::get(storage_path() . '/keys/kkb/' . $merchant_id . '/password');
 
@@ -86,7 +86,7 @@ class KKBServiceImpl extends BaseService implements KKBService
         $merchant_sign = $xml->addChild('merchant_sign');
         $merchant_sign->addAttribute('cert_id', $cert_id);
         $merchant_sign[0] = $xml_signature;
-        $url = 'https://epay.kkb.kz/jsp/remote/checkOrdern.jsp' . '?' . urlencode($xml->asXml());
+        $url = 'https://testpay.kkb.kz/jsp/remote/checkOrdern.jsp' . '?' . urlencode($xml->asXml());
         $client = new \GuzzleHttp\Client();
         $response_raw = $client->request('GET', $url, [
             'http_errors' => false
@@ -123,7 +123,7 @@ class KKBServiceImpl extends BaseService implements KKBService
 
     public function process(Request $request)
     {
-        $merchant_id = env('KKB_MERCHANT_ID');
+        $merchant_id = env('KKB_TEST_MERCHANT_ID');
         $xml = simplexml_load_string($request->get('response'), "SimpleXMLElement", LIBXML_NOCDATA);
         $signature = (string)$xml->bank_sign;
         $signature = str_replace(' ', '+', $signature);
