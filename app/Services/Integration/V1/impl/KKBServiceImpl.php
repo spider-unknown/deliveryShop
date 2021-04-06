@@ -4,7 +4,6 @@
 namespace App\Services\Integration\V1\impl;
 
 
-use App\Exceptions\Api\ApiServiceException;
 use App\Models\Enums\ErrorCode;
 use App\Services\BaseService;
 use App\Services\Integration\KKBSign;
@@ -87,14 +86,17 @@ class KKBServiceImpl extends BaseService implements KKBService
         $merchant_sign = $xml->addChild('merchant_sign');
         $merchant_sign->addAttribute('cert_id', $cert_id);
         $merchant_sign[0] = $xml_signature;
-        $url = 'https://testpay.kkb.kz/jsp/remote/checkOrdern.jsp' . '?' . urlencode($xml->asXml());
+        $url = 'https://epay.kkb.kz/jsp/remote/checkOrdern.jsp' . '?' . urlencode($xml->asXml());
         $client = new \GuzzleHttp\Client();
         $response_raw = $client->request('GET', $url, [
             'http_errors' => false
         ]);
 
         if ($response_raw->getStatusCode() != 200)
-            throw new ApiServiceException("", 400);
+            $this->apiFail([
+                'errorCode' => ErrorCode::INVALID_ARGUMENT,
+                'errors' => ['Bad request']
+            ]);
 
         $response_body = $response_raw->getBody();
         $response_xml = simplexml_load_string($response_body, "SimpleXMLElement", LIBXML_NOCDATA);
