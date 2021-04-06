@@ -18,7 +18,7 @@ class KKBServiceImpl extends BaseService implements KKBService
     public function pay($transaction_id, $user, $order_detail)
     {
 
-        $merchant_id = env('KKB_TEST_MERCHANT_ID');
+        $merchant_id = env('KKB_MERCHANT_ID');
         $cert_id = File::get(storage_path() . '/keys/kkb/' . $merchant_id . '/merchant_cert_id');
         $merchant_name = File::get(storage_path() . '/keys/kkb/' . $merchant_id . '/merchant_name');
         $keypass = File::get(storage_path() . '/keys/kkb/' . $merchant_id . '/password');
@@ -65,7 +65,7 @@ class KKBServiceImpl extends BaseService implements KKBService
 
     public function status($transaction_id)
     {
-        $merchant_id = env('KKB_TEST_MERCHANT_ID');
+        $merchant_id = env('KKB_MERCHANT_ID');
         $cert_id = File::get(storage_path() . '/keys/kkb/' . $merchant_id . '/merchant_cert_id');
         $keypass = File::get(storage_path() . '/keys/kkb/' . $merchant_id . '/password');
 
@@ -121,7 +121,7 @@ class KKBServiceImpl extends BaseService implements KKBService
 
     public function process(Request $request)
     {
-        $merchant_id = env('KKB_TEST_MERCHANT_ID');
+        $merchant_id = env('KKB_MERCHANT_ID');
         $xml = simplexml_load_string($request->get('response'), "SimpleXMLElement", LIBXML_NOCDATA);
         $signature = (string)$xml->bank_sign;
         $signature = str_replace(' ', '+', $signature);
