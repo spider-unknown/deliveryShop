@@ -131,7 +131,6 @@ class OrderServiceImplV1 extends BaseService implements OrderServiceV1
     public function orderStatus($transaction_id)
     {
         $transaction = Transaction::where('id', $transaction_id)
-            ->where('status', Transaction::PROCESS)
             ->with('order.user')->first();
         if(!$transaction) {
             return view('modules.kkb.failure');
