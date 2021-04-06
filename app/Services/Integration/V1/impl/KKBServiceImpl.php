@@ -53,8 +53,8 @@ class KKBServiceImpl extends BaseService implements KKBService
         $item->addAttribute('name', "Заказ");
         $item->addAttribute('quantity', $order_detail->total_quantity);
         $item->addAttribute('amount', $order_detail->total_amount);
-        $url = 'https://testpay.kkb.kz/jsp/process/logon.jsp';
-        //        $url = 'https://epay.kkb.kz/jsp/process/logon.jsp';
+//        $url = 'https://testpay.kkb.kz/jsp/process/logon.jsp';
+                $url = 'https://epay.kkb.kz/jsp/process/logon.jsp';
         return view('modules.kkb.redirect')->with('url', $url)
             ->with('signed_order_b64', base64_encode(preg_replace('!^[^>]+>(\r\n|\n|)!', '', $xml->asXML())))
             ->with('email', $user->email)
