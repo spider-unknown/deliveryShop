@@ -97,7 +97,8 @@ class OrderServiceImplV1 extends BaseService implements OrderServiceV1
                 $transaction = Transaction::create([
                     'order_id' => $order->id,
                     'transaction_id' => Transaction::generateTransactionId(),
-                    'status' => Transaction::PROCESS
+                    'status' => Transaction::PROCESS,
+                    'amount' => $order->total_amount
                 ]);
                 $url = URL::asset('/api/V1/order/pay?transaction_id='.$transaction->id);
             }
