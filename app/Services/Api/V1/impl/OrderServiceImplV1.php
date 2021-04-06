@@ -7,15 +7,31 @@ namespace App\Services\Api\V1\impl;
 use App\Http\Requests\Api\V1\OrderApiRequest;
 use App\Models\Entities\Order\Order;
 use App\Models\Entities\Order\OrderDetail;
+use App\Models\Entities\Order\Transaction;
 use App\Models\Entities\Product;
 use App\Models\Entities\UserAddress;
 use App\Models\Enums\ErrorCode;
 use App\Services\Api\V1\OrderServiceV1;
 use App\Services\BaseService;
+use App\Services\Integration\V1\KKBService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 
 class OrderServiceImplV1 extends BaseService implements OrderServiceV1
 {
+    protected $kkbService;
+
+    /**
+     * OrderServiceImplV1 constructor.
+     * @param $kkbService
+     */
+    public function __construct(KKBService $kkbService)
+    {
+        $this->kkbService = $kkbService;
+    }
+
+
     public function orders($user_id)
     {
         return Order::where('user_id', $user_id)
@@ -75,8 +91,18 @@ class OrderServiceImplV1 extends BaseService implements OrderServiceV1
                 );
             }
             OrderDetail::insert($order_details);
+            if(!$order->cash) {
+                $url = null;
+            } else {
+                $transaction = Transaction::create([
+                    'order_id' => $order->id,
+                    'transaction_id' => Transaction::generateTransactionId(),
+                    'status' => Transaction::PROCESS
+                ]);
+                $url = URL::asset('/api/V1/order/pay?transaction_id='.$transaction->id);
+            }
             DB::commit();
-            return ['message' => trans('actions.added')];
+            return ['url' => $url];
         } catch (\Exception $exception) {
             DB::rollBack();
             $this->apiFail([
@@ -87,6 +113,58 @@ class OrderServiceImplV1 extends BaseService implements OrderServiceV1
                 ]
             ]);
         }
+    }
+
+    public function payOrder($transaction_id)
+    {
+        $transaction = Transaction::where('id', $transaction_id)
+            ->where('status', Transaction::PROCESS)
+            ->with('order.user')->first();
+        if(!$transaction) {
+            return view('modules.kkb.failure');
+        }
+
+        return $this->kkbService->pay($transaction->transaction_id, $transaction->order->user, $transaction->order);
+    }
+
+    public function orderStatus($transaction_id)
+    {
+        $transaction = Transaction::where('id', $transaction_id)
+            ->where('status', Transaction::PROCESS)
+            ->with('order.user')->first();
+        if(!$transaction) {
+            return view('modules.kkb.failure');
+        }
+        return $this->kkbService->status($transaction->transaction_id);
+    }
+
+    public function orderProcess(Request $request)
+    {
+        $response = $this->kkbService->process($request);
+        $transaction = Transaction::where('transaction_id', $response['order_id'])
+            ->first();
+        if(!$transaction) {
+            $this->apiFail([
+                'errorCode' => ErrorCode::RESOURCE_NOT_FOUND,
+                'errors' => [
+                    'Транзакция не найдена!'
+                ]
+            ]);
+        } else {
+            if($transaction->status != Transaction::PROCESS)
+                $this->apiFail([
+                    'errorCode' => ErrorCode::ALREADY_REQUESTED,
+                    'errors' => [
+                        'Транзакция уже обработана!'
+                    ]
+                ]);
+        }
+        $transaction->approval_code = $response['approval_code'];
+        $transaction->reference = $response['reference'];
+        $transaction->terminal = $response['merchant_id'];
+        $transaction->status = Transaction::PAID;
+        $transaction->save();
+        return view('modules.kkb.success', compact('transaction'));
     }
 
 

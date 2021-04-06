@@ -16,6 +16,8 @@ use App\Services\Common\V1\Support\impl\CodeServiceImpl;
 use App\Services\Common\V1\Support\impl\FileServiceImpl;
 use App\Services\Common\V1\Support\impl\OneSignalPushServiceImpl;
 use App\Services\Common\V1\Support\OneSignalPushService;
+use App\Services\Integration\V1\impl\KKBServiceImpl;
+use App\Services\Integration\V1\KKBService;
 use App\Services\Web\V1\impl\ProfileWebServiceImpl;
 use App\Services\Web\V1\ProfileWebService;
 use Illuminate\Support\ServiceProvider;
@@ -52,7 +54,11 @@ class SystemServiceProvider extends ServiceProvider
             return new ProfileServiceImplV1(new FileServiceImpl());
         });
         $this->app->bind(OrderServiceV1::class, function ($app) {
-            return new OrderServiceImplV1();
+            return new OrderServiceImplV1(new KKBServiceImpl());
+        });
+
+        $this->app->bind(KKBService::class, function ($app) {
+            return new KKBServiceImpl();
         });
 
         //WEB

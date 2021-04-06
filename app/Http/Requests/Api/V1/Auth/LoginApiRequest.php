@@ -21,7 +21,7 @@ class LoginApiRequest extends ApiBaseRequest
             'phone' => ['required', 'string', 'exists:users,phone', 'regex:/^[0-9]+$/', 'min:6', 'max:15'],
             'password' => ['required', 'string'],
             'platform' => ['required', Rule::in([Platform::ANDROID, Platform::IOS])],
-            'push_id' => ['string', 'nullable']
+            'push_id' => ['string', 'required']
         ];
     }
 

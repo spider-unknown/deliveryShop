@@ -37,5 +37,6 @@ class ErrorCode
     public const FORBIDDEN = 25;
     public const INVALID_CODE = 26;
     public const INVALID_OLD_PASSWORD = 27;
+    public const PAYMENT_REJECTED = 28;
 
 }

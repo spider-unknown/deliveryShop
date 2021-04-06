@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +23,14 @@ Route::group(['namespace' => 'Core'], function () {
 Route::get('/categories', ['uses' => 'ProductApiController@categories']);
 Route::get('/advertisements', ['uses' => 'CommonApiController@advertisements']);
 Route::get('/cities', ['uses' => 'CommonApiController@cities']);
+
+//KKB pay
+Route::get('/order/pay', ['uses' => 'OrderApiController@orderPay']);
+Route::post('/order/payment/process', ['uses' => 'OrderApiController@kkbOrderProcess']);
+Route::get('/order/payment/success', ['uses' => 'OrderApiController@kkbSuccess']);
+Route::get('/order/payment/failure', ['uses' => 'OrderApiController@kkbFailure']);
+Route::get('/order/payment/status', ['uses' => 'OrderApiController@kkbOrderStatus']);
+
 Route::group(['middleware' => 'auth:api'], function () {
     Route::group(['namespace' => 'Core'], function () {
         Route::get('/me', ['uses' => 'AuthController@me']);
