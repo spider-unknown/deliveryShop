@@ -23,11 +23,11 @@
     @endif
 
     @if(session()->has('error'))
-    toastr.info("{!! session()->get('error') !!}");
+    toastr.error("{!! session()->get('error') !!}");
     @endif
 
     @if(session()->has('warning'))
-    toastr.info("{!!session()->get('warning') !!}");
+    toastr.warning("{!!session()->get('warning') !!}");
     @endif
     // tinymce.init({
     //     selector: 'textarea.description',

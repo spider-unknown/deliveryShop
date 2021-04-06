@@ -29,7 +29,7 @@ class OrderController extends WebBaseController
         $order = Order::find($request->id);
         if ($order->cash) {
            $transaction = Transaction::where('order_id', $order->id)->first();
-           if($transaction->status == Transaction::PROCESS) {
+           if($transaction && $transaction->status == Transaction::PROCESS) {
                throw new WebServiceExplainedException('Транзакция не оплачена!');
            }
         }
