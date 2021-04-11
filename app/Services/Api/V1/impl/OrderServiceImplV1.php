@@ -36,7 +36,8 @@ class OrderServiceImplV1 extends BaseService implements OrderServiceV1
     {
         return Order::where('user_id', $user_id)
             ->orderBy('created_at', 'desc')
-            ->with('details.product', 'address.city.country')->paginate(10);
+            ->with('details.product', 'address.city.country')
+            ->paginate(10);
     }
 
     public function makeOrder($user_id, OrderApiRequest $request)
@@ -91,7 +92,7 @@ class OrderServiceImplV1 extends BaseService implements OrderServiceV1
                 );
             }
             OrderDetail::insert($order_details);
-            if(!$order->cash) {
+            if($order->cash) {
                 $url = null;
             } else {
                 $transaction = Transaction::create([

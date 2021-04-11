@@ -14,6 +14,10 @@ class OrderController extends WebBaseController
     {
         $orders = Order::orderBy('created_at', 'desc')
             ->with('details.product', 'address.city.country', 'user')->paginate(10);
+        $transactions = [];
+        foreach ($orders as $order) {
+             $transactions[] = $order->transaction_detail;
+        }
         return $this->adminPagesView('order.index', compact('orders'));
     }
 

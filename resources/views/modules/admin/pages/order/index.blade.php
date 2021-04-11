@@ -26,6 +26,7 @@
                                 <th>Сумма</th>
                                 <th>Курьер</th>
                                 <th>Оплата</th>
+                                <th>Оплачен</th>
                                 <th>Создан</th>
                                 <th>Действия</th>
                             </tr>
@@ -45,8 +46,13 @@
                                         @endif
                                     </td>
                                     <td>{{$order->total_amount}}</td>
-                                    <td><span class="badge badge-pill badge-grey">{{$order->courier ? 'Да' : 'Нет'}}</span></td>
-                                    <td><span class="badge badge-pill badge-grey">{{$order->cash ? 'Наличными' : 'Картой'}}
+                                    <td><span
+                                            class="badge badge-pill badge-grey">{{$order->courier ? 'Да' : 'Нет'}}</span>
+                                    </td>
+                                    <td><span
+                                            class="badge badge-pill badge-grey">{{$order->cash ? 'Наличными' : 'Картой'}}
+                                    <td><span class="badge badge-pill badge-grey">{{$order->transaction_detail
+? $order->transaction_detail['status'] == 1 ? 'Оплачено' : 'Не оплачено' : 'Наличными'}}
                                         </span></td>
                                     <td>{{$order->created_at}}</td>
                                     <td class="d-flex">
